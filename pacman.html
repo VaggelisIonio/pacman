@@ -82,7 +82,7 @@
             //  Remove the next 2 lines if running locally
             this.load.baseURL = 'https://vaggelisionio.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
-
+	    this.load.image('BONUS', 'assets/ac2fb8e249ac027742040db49b7eef00_cartoon-treasure-chest-clipart-cartoon-treasure-chest-clipart_456-375.jpeg');
             this.load.image('dot', 'assets/dot.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
@@ -102,6 +102,14 @@
             this.dots = this.add.physicsGroup();
 
             this.map.createFromTiles(7, this.safetile, 'dot', this.layer, this.dots);
+	    
+		
+		
+		
+		this.dots2 = this.add.physicsGroup();
+
+            this.map.createFromTiles(7, this.safetile, 'BONUS', this.layer, this.dots2); //ALLAGH TOU 7
+
 
             //  The dots will need to be offset by 6px to put them back in the middle of the grid
             this.dots.setAll('x', 6, false, false, 1);
@@ -246,8 +254,16 @@
             if (this.dots.total === 0)
             {
                 this.dots.callAll('revive');
-            }
+	    }
+	},
+	 eatBONUS: function (pacman,BONUS) {
 
+          BONUS.kill();
+            if (this.dots2.total === 0)
+            {
+                this.dots2.callAll('revive');
+            }
+	 }
         },
 
         update: function () {
