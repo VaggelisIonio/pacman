@@ -41,6 +41,24 @@
 
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
+        
+         this.scoreText = game.add.text(320, 500, 'Score: 0', { fontSize: '15px Ariel', fill: 'white' });
+            this.bonusText = game.add.text(0, 500, 'Bonus: 0', { fontSize: '15px Ariel', fill: 'white' });
+            
+            var sprite = game.add.sprite(417, 465, 'sword2');
+		
+	    game.add.tween(sprite).to( { alpha: 0 }, 30000, Phaser.Easing.Linear.None, true);
+		
+            lives = game.add.group();
+            game.add.text(game.world.width - 370, 500, 'Lives: ', { fontSize: '15px Ariel', fill: 'white' });
+		
+            for (var i = 0; i < 3; i++) 
+		    {
+			var pacman = lives.create(game.world.width - 280 + (30 * i), 517, 'lifes');
+			pacman.anchor.setTo(0.5, 0.5);
+			pacman.angle = 90;
+			pacman.alpha = 0.4;
+		    }
 
     };
 
