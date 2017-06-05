@@ -10,23 +10,14 @@
             background-color: #000;
         }
     </style>
-    <audio autoplay loop>     
-        	<source src="assets/The Walking Dead Original Soundtrack  - Theme Song HD.mp3" type="audio/mp3">
-	</audio>
-
- <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
 </head>
 <body>
 
     <script type="text/javascript">
 
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
-	    
-//    var score = 0;
-//    var scoreText = '';
-//    var bonus = 0;
-//    var bonusText = '';
-	    
+
     var Pacman = function (game) {
 
         this.map = null;
@@ -47,28 +38,10 @@
 
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
-        
-//         this.scoreText = game.add.text(320, 500, 'Score: 0', { fontSize: '15px Ariel', fill: 'white' });
-//            this.bonusText = game.add.text(0, 500, 'Bonus: 0', { fontSize: '15px Ariel', fill: 'white' });
-            
-//            var sprite = game.add.sprite(417, 465, 'skull');
-		
-//	    game.add.tween(sprite).to( { alpha: 0 }, 30000, Phaser.Easing.Linear.None, true);
-		
-//            lives = game.add.group();
-//            game.add.text(game.world.width - 370, 500, 'Lives: ', { fontSize: '15px Ariel', fill: 'white' });
-		
-//            for (var i = 0; i < 3; i++) 
-//		    {
-//			var pacman = lives.create(game.world.width - 280 + (30 * i), 517, 'lives');
-//			pacman.anchor.setTo(0.5, 0.5);
-//			pacman.angle = 90;
-//			pacman.alpha = 0.4;
-//		    }
 
     };
 
-       Pacman.prototype = {
+    Pacman.prototype = {
 
         init: function () {
 
@@ -86,11 +59,9 @@
 
             //  We need this because the assets are on github pages
             //  Remove the next 2 lines if running locally
-            this.load.baseURL = 'https://vaggelisionio.github.io/pacman/';
+            this.load.baseURL = 'https://VaggelisIonio.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
-		
-	    this.load.image('lives', 'assets/skull.jpeg');	    
-	    this.load.image('BONUS', 'assets/treasure.jpeg');
+
             this.load.image('dot', 'assets/dot.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
@@ -108,10 +79,8 @@
             this.layer = this.map.createLayer('Pacman');
 
             this.dots = this.add.physicsGroup();
-		this.dots2 = this.add.physicsGroup();
-		
+
             this.map.createFromTiles(7, this.safetile, 'dot', this.layer, this.dots);
-            this.map.createFromTiles(33, this.safetile, 'BONUS', this.layer, this.dots2); //ALLAGH TOU 7
 
             //  The dots will need to be offset by 6px to put them back in the middle of the grid
             this.dots.setAll('x', 6, false, false, 1);
@@ -133,8 +102,6 @@
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
 
-//	    scoreText = game.add.text(180, 0, 'Score: 0', {font: '16px ', fill: 'yellow'});
-//            bonusText = game.add.text(350, 0, 'Bonus: 0', {font: '16px ', fill: 'yellow'});	
         },
 
         checkKeys: function () {
@@ -254,34 +221,19 @@
         eatDot: function (pacman, dot) {
 
             dot.kill();
-//	    score+=10;
-//	    scoreText.text='score: '+ score;
+
             if (this.dots.total === 0)
             {
-//		    this.finish = game.add.text(180, 175, "YOU ARE THE WINNER", { fontSize:"80px",fill:"white"});
-		 this.pacman.destroy();
-	    }
-	},
-	       
-	 eatBONUS: function (pacman, BONUS) {
-
-            BONUS.kill();
-//	    bonus+=50;
-//	    bonusText.text='bonus: '+ bonus;
-		 
-            if (this.dots2.total === 0)
-            {
-                this.dots2.callAll('revive');
+                this.dots.callAll('revive');
             }
-	 }
+
         },
 
         update: function () {
           
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
-            this.physics.arcade.overlap(this.pacman, this.dots2, this.eatBonus, null, this);
-		
+
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
 
