@@ -10,11 +10,11 @@
             background-color: #000;
         }
     </style>
-<!--    
+
         <audio autoplay loop>     
         	<source src="assets/The Walking Dead Original Soundtrack  - Theme Song HD.mp3" type="audio/mp3">
 	</audio>
--->    
+
     <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
 </head>
 <body>
@@ -49,8 +49,7 @@
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
 
-        this.scoreText = game.add.text(280, 280, 'Score: 0', { fontSize: '15px Ariel', fill: 'yellow' });
-//        this.bonusText = game.add.text(0, 280, 'Bonus: 0', { fontSize: '15px Ariel', fill: 'yellow' });
+
     };
 
     Pacman.prototype = {
@@ -114,7 +113,9 @@
 
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
-
+		
+        	this.scoreText = game.add.text(280, 280, 'Score: 0', { fontSize: '15px Ariel', fill: 'yellow' });
+//        this.bonusText = game.add.text(0, 280, 'Bonus: 0', { fontSize: '15px Ariel', fill: 'yellow' });
         },
 
         checkKeys: function () {
