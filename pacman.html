@@ -10,10 +10,10 @@
             background-color: #000;
         }
     </style>
-<!--    <audio autoplay loop>     
+    <audio autoplay loop>     
         	<source src="assets/The Walking Dead Original Soundtrack  - Theme Song HD.mp3" type="audio/mp3">
 	</audio>
--->
+
     <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
 </head>
 <body>
@@ -111,7 +111,7 @@
 		this.dots2 = this.add.physicsGroup();
 		
             this.map.createFromTiles(7, this.safetile, 'dot', this.layer, this.dots);
-            this.map.createFromTiles(34, this.safetile, 'BONUS', this.layer, this.dots2); //ALLAGH TOU 7
+            this.map.createFromTiles(33, this.safetile, 'BONUS', this.layer, this.dots2); //ALLAGH TOU 7
 
 
             //  The dots will need to be offset by 6px to put them back in the middle of the grid
